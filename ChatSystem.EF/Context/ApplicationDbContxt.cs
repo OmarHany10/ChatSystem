@@ -11,7 +11,7 @@ namespace ChatSystem.EF.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Conversation>().HasDiscriminator<String>("ConversationType")
+            builder.Entity<Conversation>().HasDiscriminator<string>("ConversationType")
                 .HasValue<GroupConversation>("Group")
                 .HasValue<PrivateConversation>("Private");
 
