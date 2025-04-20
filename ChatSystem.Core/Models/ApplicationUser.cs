@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using JWTRefreshToken.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -28,6 +29,6 @@ namespace ChatSystem.Core.Models
 
         public virtual ICollection<UserConversation> UserConversations { get; set; } = new HashSet<UserConversation>();
         public virtual ICollection<Connection> Connections { get; set; } = new HashSet<Connection>();
-
+        public IList<RefreshToken> RefreshTokens { get; set; }
     }
 }

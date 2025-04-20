@@ -10,11 +10,14 @@ namespace ChatSystem.Core.Services.Interfaces
 {
     public interface IAuthService
     {
-        public Task<TokenDTO> Register(UserDTO userDTO);
-        public Task<TokenDTO> Login(LoginDTO loginDTO);
-        public Task<UserDTO> GetUser(string userId);
-        public Task<bool> LoadPicture(IFormFile picture, string userId);
-        public Task<byte []> GetPicture(string userId);
-        
+        Task<TokenDTO> Register(UserDTO userDTO);
+        Task<TokenDTO> Login(LoginDTO loginDTO);
+        Task<UserDTO> GetUser(string userId);
+        Task<bool> LoadPicture(IFormFile picture, string userId);
+        Task<byte []> GetPicture(string userId);
+        Task<TokenDTO> RefreshToken(string token);
+
+        Task<bool> RevokeToken(string token);
+
     }
 }

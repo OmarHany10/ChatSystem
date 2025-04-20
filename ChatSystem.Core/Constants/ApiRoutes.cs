@@ -25,5 +25,8 @@ namespace ChatSystem.Core.Constants
 
         public const string GroupRoute = "Group";
         public const string PrivateRoute = "Private";
+
+        public const string RevokeRoute = "RevokeToken";
+        public const string RefreshRoute = "RefreshToken";
     }
 }

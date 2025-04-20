@@ -25,6 +25,8 @@ namespace ChatSystem.API.Controllers
             var result = await authService.Register(userDTO);
             if (result.Message != null)
                 return BadRequest(result.Message);
+
+            AddRefreshTokenToCookie(result.RefreshToken, result.RefreshTokenExpiresOn);
             return Ok(result);
         }
 
@@ -36,7 +38,47 @@ namespace ChatSystem.API.Controllers
             var result = await authService.Login(loginDTO);
             if (result.Message != null)
                 return BadRequest(result.Message);
+
+            if (!string.IsNullOrEmpty(result.RefreshToken))
+                AddRefreshTokenToCookie(result.RefreshToken, result.RefreshTokenExpiresOn);
+
             return Ok(result);
+        }
+
+        [HttpGet(ApiRoutes.RefreshRoute)]
+        public async Task<IActionResult> RefreshToken()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+
+            if (string.IsNullOrEmpty(refreshToken))
+                return BadRequest();
+
+            var result = await authService.RefreshToken(refreshToken);
+
+            if (result.Message != null)
+                return BadRequest(result.Message);
+
+            AddRefreshTokenToCookie(result.RefreshToken, result.RefreshTokenExpiresOn);
+
+            return Ok(result);
+
+        }
+
+        [HttpGet(ApiRoutes.RevokeRoute)]
+        public async Task<IActionResult> RevokeToken()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+
+            if (string.IsNullOrEmpty(refreshToken))
+                return BadRequest();
+
+            var result = await authService.RevokeToken(refreshToken);
+
+            if (!result)
+                return BadRequest("Invalid Token");
+
+            return Ok();
+
         }
 
         [Authorize]
@@ -69,6 +111,16 @@ namespace ChatSystem.API.Controllers
             return Ok(user);
         }
 
-        
+
+        private void AddRefreshTokenToCookie(string refreshToken, DateTime expires)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = expires,
+            };
+
+            Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
+        }
     }
 }
