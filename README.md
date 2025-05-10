@@ -19,7 +19,7 @@ ChatSystem is a real-time chat backend built with **ASP.NET Core Web API**, **Si
 
 ## ⚙️ Tech Stack
 
-- **ASP.NET Core 6+**
+- **ASP.NET Core**
 - **Entity Framework Core + SQL Server**
 - **SignalR** for real-time WebSocket-based communication
 - **JWT Authentication** with refresh tokens
@@ -29,6 +29,7 @@ ChatSystem is a real-time chat backend built with **ASP.NET Core Web API**, **Si
 
 ## 📁 Project Structure
 
+```
 ChatSystem.API/
 ├── Controllers/
 │ ├── AuthController.cs # Login, Register, Profile Picture
@@ -63,6 +64,7 @@ ChatSystem.EF/
 ├── Migrations/ # EF Core migration history
 ├── Repositories/ # Concrete Repositories
 ├── UnitOfWork.cs # Unit of Work Pattern
+```
 
 ---
 
@@ -117,7 +119,7 @@ ChatSystem.EF/
     - `NewGroupMessageMethod`
     - `NewPrivateMessageMethod`
 
-#### 🔧 SignalR Client Example (JS)
+#### 🔧 SignalR Client Example (JavaScript)
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -129,23 +131,27 @@ const connection = new signalR.HubConnectionBuilder()
 connection.on("newGroupEvent", (msg) => console.log("Group:", msg));
 
 await connection.start();
+```
 
 ---
 
-🚀 Getting Started
-Prerequisites
-.NET 6 SDK or later
+## 🚀 Getting Started
 
-SQL Server instance
+### Prerequisites
 
-Node.js (optional for frontend)
+- .NET 6 SDK or later  
+- SQL Server instance  
+- Node.js (optional for frontend)
 
-Setup Instructions
+### Setup Instructions
 
-1. Clone the repository:
+1. **Clone the repository:**
+```bash
 git clone https://github.com/your-repo/chat-system-api.git
+```
 
-2. Configure appsettings.json with your SQL connection string and JWT keys:
+2. **Configure `appsettings.json`** with your SQL connection string and JWT keys:
+```json
 {
   "ConnectionStrings": {
     "cs": "Your-SQL-Server-Connection-String"
@@ -156,12 +162,35 @@ git clone https://github.com/your-repo/chat-system-api.git
     "Audience": "YourAppAudience"
   }
 }
+```
 
-3. Apply EF Core migrations:
+3. **Apply EF Core migrations:**
+```bash
 dotnet ef database update
+```
 
-4. Run the application:
+4. **Run the application:**
+```bash
 dotnet run
+```
 
-5. Access Swagger UI:
+5. **Access Swagger UI:**
+```
 https://localhost:<port>/swagger
+```
+
+---
+
+## 🧪 Testing with Swagger
+
+Swagger UI is enabled in development by default. Use it to:
+
+- ✅ Register and login users  
+- 🔑 Test endpoints securely with JWT  
+- 💬 Simulate chat actions (create group, send message, etc.)
+
+---
+
+## 👨‍💻 Author
+
+Built by Omar Hany. Contributions, issues, and suggestions are welcome!
