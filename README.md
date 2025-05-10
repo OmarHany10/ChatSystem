@@ -31,7 +31,9 @@ ChatSystem is a real-time chat backend built with **ASP.NET Core Web API**, **Si
 
 ChatSystem.API/
 ├── Controllers/
+
 │ ├── AuthController.cs # Login, Register, Profile Picture
+
 │ ├── FriendController.cs # Friend Request Logic
 │ ├── GroupController.cs # Group Chat Logic
 │ └── MessageController.cs # Messaging Endpoints
