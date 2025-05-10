@@ -31,9 +31,7 @@ ChatSystem is a real-time chat backend built with **ASP.NET Core Web API**, **Si
 
 ChatSystem.API/
 ├── Controllers/
-
 │ ├── AuthController.cs # Login, Register, Profile Picture
-
 │ ├── FriendController.cs # Friend Request Logic
 │ ├── GroupController.cs # Group Chat Logic
 │ └── MessageController.cs # Messaging Endpoints
@@ -65,7 +63,6 @@ ChatSystem.EF/
 ├── Migrations/ # EF Core migration history
 ├── Repositories/ # Concrete Repositories
 ├── UnitOfWork.cs # Unit of Work Pattern
-
 
 ---
 
@@ -132,3 +129,39 @@ const connection = new signalR.HubConnectionBuilder()
 connection.on("newGroupEvent", (msg) => console.log("Group:", msg));
 
 await connection.start();
+
+---
+
+🚀 Getting Started
+Prerequisites
+.NET 6 SDK or later
+
+SQL Server instance
+
+Node.js (optional for frontend)
+
+Setup Instructions
+
+1. Clone the repository:
+git clone https://github.com/your-repo/chat-system-api.git
+
+2. Configure appsettings.json with your SQL connection string and JWT keys:
+{
+  "ConnectionStrings": {
+    "cs": "Your-SQL-Server-Connection-String"
+  },
+  "JWT": {
+    "Key": "Your-JWT-Secret-Key",
+    "Issuer": "YourAppIssuer",
+    "Audience": "YourAppAudience"
+  }
+}
+
+3. Apply EF Core migrations:
+dotnet ef database update
+
+4. Run the application:
+dotnet run
+
+5. Access Swagger UI:
+https://localhost:<port>/swagger
