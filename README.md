@@ -1,4 +1,4 @@
-# ChatSystem API
+# PulseChat API
 
 ChatSystem is a real-time chat backend built with **ASP.NET Core Web API**, **SignalR**, and **Entity Framework Core**. It supports full user authentication, friend management, group and private messaging, and real-time communication via SignalR.
 
